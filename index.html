@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalClock</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family:'Courier New', Courier, monospace;
+        }
+        .clock{
+            width:100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #424558;
+        }
+        .time{
+            font-size: 80px;
+            font-weight: bold;
+            color: #fff;
+    
+        }
+        .date_time{
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+    <div class="time"></div>
+    <div class="date_time"></div>
+    </div>
+ <script>
+    var time=document.querySelector('.time');
+    var dateTime=document.querySelector('.date_time');
+    function updateClock(){
+    var now= new Date();
+    var hours=now.getHours();
+    var minutes=now.getMinutes();
+    var seconds=now.getSeconds();
+    var day=now.getDay();
+    var date=now.getDate();
+    var month=now.getMonth();
+    var year=now.getFullYear();
+    var dayNames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    hours=hours %12 || 12;
+    minutes= minutes < 10 ? '0'+ minutes:minutes;
+    seconds=seconds < 10 ?'0' + seconds:seconds;
+    date=date <10 ? '0' +date:date;
+    var peroid=hours<12 ?'AM':'PM';
+    time.innerHTML=hours+':'+minutes+':'+seconds+':'+peroid;
+    dateTime.innerHTML=dayNames[day]+','+monthNames[month]+','+date+','+year;
+    }
+    updateClock();
+    setInterval(updateClock,1000);
+ </script>  
+</body>
+</html>
